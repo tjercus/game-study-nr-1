@@ -30,6 +30,7 @@ Canvas.propTypes = {
   snipes: PropTypes.arrayOf(PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
+    dir: PropTypes.string.isRequired
   })).isRequired
 };
 
