@@ -1,10 +1,18 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import {SNIPE_SIZE} from "./constants";
 
 const Snipe = props => {
   console.log("Snipe", props.snipe);
-  return (<rect x={props.snipe.x} y={props.snipe.y} width="5" height="5" stroke="green" fill="green" strokeWidth="5"/>);
+  return (<rect x={props.snipe.x}
+                y={props.snipe.y}
+                width={SNIPE_SIZE}
+                height={SNIPE_SIZE}
+                stroke="green"
+                fill="green"
+                strokeWidth={SNIPE_SIZE}
+  />);
 };
 
 Snipe.propTypes = {

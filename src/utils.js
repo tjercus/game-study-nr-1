@@ -1,18 +1,16 @@
-export const Directions = {
-  UP: "up",
-  RIGHT: "right",
-  DOWN: "down",
-  LEFT: "left"
+
+import {Directions, DirectionsArray, SNIPE_SIZE} from "./constants";
+
+/**
+ *
+ * @returns {string} random dir
+ */
+export const createRandomDir = () => {
+  const randomNr = Math.floor(Math.random() * DirectionsArray.length);
+  return DirectionsArray[randomNr];
 };
 
-const directions = [Directions.UP, Directions.RIGHT, Directions.DOWN, Directions.LEFT];
-
-const createRandomDir = () => {
-  const randomNr = Math.floor(Math.random() * directions.length);
-  return directions[randomNr];
-};
-
-const createOppositeDir = (dir) => {
+const createOppositeDir = dir => {
   if (dir === Directions.UP) {
     return Directions.DOWN;
   }
@@ -27,33 +25,55 @@ const createOppositeDir = (dir) => {
   }
 };
 
-export const correctBeyondBorderPosition = (position, width, height) => {
-  if (position.x > width) {
-    position.x -= width;
-  } else if (position.x < 0) {
-    position.x += width;
+/**
+ * Corrects a snipes position and direction given the borders of a field
+ *  the rule is that there is no pacman/snipes like 'round-going', so a snipe
+ *  cannot cross the borders.
+ * @param {Snipe} snipe - the moving subject
+ * @param {number} fieldWidth
+ * @param {number} fieldHeight
+ * @returns {Snipe} modified subject
+ */
+export const correctBeyondBorderPosition = (snipe, fieldWidth, fieldHeight) => {
+  if (snipe.x > fieldWidth) {
+    snipe.x = fieldWidth - SNIPE_SIZE;
+    snipe.dir = createOppositeDir(snipe.dir);
+  } else if (snipe.x < 0) {
+    snipe.x = 0;
+    snipe.dir = createOppositeDir(snipe.dir);
   }
-  if (position.y > height) {
-    position.y -= height;
-  } else if (position.y < 0) {
-    position.y += height;
+  if (snipe.y > fieldHeight) {
+    snipe.y = fieldHeight - SNIPE_SIZE;
+    snipe.dir = createOppositeDir(snipe.dir);
+  } else if (snipe.y < 0) {
+    snipe.y = 0;
+    snipe.dir = createOppositeDir(snipe.dir);
   }
-  return position;
+  return snipe;
 };
 
-export const updateCoordsInDirection = (unit, progress) => {
+/**
+ * Given a current x and y and a direction, calculate next x and y after moving
+ * @param {Snipe} unit
+ * @param {number} nrOfPixels - to move
+ * @returns {Snipe} modified snipe
+ */
+export const updateCoordsInDirection = (unit, nrOfPixels) => {
   switch(unit.dir) {
     case Directions.LEFT:
-      unit.x = unit.x - progress;
+      unit.x = unit.x - nrOfPixels;
       break;
     case Directions.RIGHT:
-      unit.x = unit.x + progress;
+      unit.x = unit.x + nrOfPixels;
       break;
     case Directions.UP:
-      unit.y = unit.y - progress;
+      unit.y = unit.y - nrOfPixels;
       break;
     case Directions.DOWN:
-      unit.y = unit.y + progress;
+      unit.y = unit.y + nrOfPixels;
+      break;
+    default:
+      unit.x = unit.x - nrOfPixels;
       break;
   }
   return unit;

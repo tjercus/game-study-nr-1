@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Snipe from "./Snipe";
+import {CANVAS_HEIGHT} from "./constants";
 
 const Canvas = props => {
-  const gameHeight = 800;
-  const viewBox = [0, 0, gameHeight, gameHeight];
+  const viewBox = [0, 0, CANVAS_HEIGHT, CANVAS_HEIGHT];
 
   const onCanvasClick = () => {
     console.log("clicked on main canvas");
