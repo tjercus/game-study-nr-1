@@ -1,4 +1,3 @@
-
 export const Directions = {
   UP: "up",
   RIGHT: "right",
@@ -6,7 +5,12 @@ export const Directions = {
   LEFT: "left"
 };
 
-export const DirectionsArray = [Directions.UP, Directions.RIGHT, Directions.DOWN, Directions.LEFT];
+export const DirectionsArray = [
+  Directions.UP,
+  Directions.RIGHT,
+  Directions.DOWN,
+  Directions.LEFT
+];
 
 export const CANVAS_WIDTH = 800;
 

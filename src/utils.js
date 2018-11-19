@@ -1,5 +1,4 @@
-
-import {Directions, DirectionsArray, SNIPE_SIZE} from "./constants";
+import { Directions, DirectionsArray, SNIPE_SIZE } from "./constants";
 
 /**
  *
@@ -59,7 +58,7 @@ export const correctBeyondBorderPosition = (snipe, fieldWidth, fieldHeight) => {
  * @returns {Snipe} modified snipe
  */
 export const updateCoordsInDirection = (unit, nrOfPixels) => {
-  switch(unit.dir) {
+  switch (unit.dir) {
     case Directions.LEFT:
       unit.x = unit.x - nrOfPixels;
       break;
