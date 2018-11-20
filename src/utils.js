@@ -34,18 +34,18 @@ const createOppositeDir = dir => {
  * @returns {Snipe} modified subject
  */
 export const correctBeyondBorderPosition = (snipe, fieldWidth, fieldHeight) => {
-  if (snipe.x > fieldWidth) {
+  if (snipe.x >= fieldWidth) {
     snipe.x = fieldWidth - SNIPE_SIZE;
     snipe.dir = createOppositeDir(snipe.dir);
-  } else if (snipe.x < 0) {
-    snipe.x = 0;
+  } else if (snipe.x <= 0) {
+    snipe.x = 1;
     snipe.dir = createOppositeDir(snipe.dir);
   }
-  if (snipe.y > fieldHeight) {
+  if (snipe.y >= fieldHeight) {
     snipe.y = fieldHeight - SNIPE_SIZE;
     snipe.dir = createOppositeDir(snipe.dir);
-  } else if (snipe.y < 0) {
-    snipe.y = 0;
+  } else if (snipe.y <= 0) {
+    snipe.y = 1;
     snipe.dir = createOppositeDir(snipe.dir);
   }
   return snipe;
